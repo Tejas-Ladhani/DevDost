@@ -3,7 +3,6 @@ import os
 import random
 from time import sleep, time
 from requests import get
-from zmq import NULL
 from functionalities.speak import speak
 from functionalities.listen import listen
 import wikipedia
