@@ -10,7 +10,8 @@ if __name__ == "__main__":
 
     while True:
         try:
-                query = listen().lower()
-                openApplication(query)
+            query = listen().lower()
+            openApplication(query)
         except Exception as exc:
-            speak("what was that! please say it again.")
+            pass
+            # speak("what was that! please say it again.")
