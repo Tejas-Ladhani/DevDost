@@ -1,5 +1,7 @@
+from datetime import datetime
 import os
 import random
+from time import time
 from requests import get
 from zmq import NULL
 from functionalities.speak import speak
@@ -8,6 +10,8 @@ import wikipedia
 import webbrowser
 import sys
 import pyjokes
+import pywhatkit
+import pyautogui
 
 
 def openApplication(query):
@@ -89,6 +93,21 @@ def openApplication(query):
     elif "open youtube" in query:
         speak("okay, my lordship!")
         webbrowser.open_new_tab("www.youtube.com")
+    elif (
+        "play on youtube" in query
+        or "music on youtube" in query
+        or "on youtube" in query
+        or "play youtube" in query
+        or "play music" in query
+        or "play song" in query
+        or "play some song" in query
+        or "some song" in query
+        or "some music" in query
+        or "play some music" in query
+    ):
+        speak("Okay, what should i play on youtube ?")
+        whomToPlay = listen()
+        pywhatkit.playonyt(whomToPlay if whomToPlay != "" else "arjit singh")
 
     """
     Handles all/around stackoverflow
@@ -175,8 +194,36 @@ def openApplication(query):
         speak("Okay, making pc sleep")
         os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
     # speak("Dude, any more work for me ?")
+
     """
     whatsapp
+    """
+    if (
+        "message on whatsapp" in query
+        or "whatsapp message" in query
+        or "ping on whatsapp" in query
+        or "on whatsapp" in query
+        or "in whatsapp" in query
+    ):
+        speak("okay, to which number should we send ? please enter.")
+        contact = pyautogui.prompt(
+            "Please Enter the number", title="From DevDost | Number"
+        )
+        speak("okay. Now, what should be the message")
+        message = pyautogui.prompt(
+            "Please Enter the Message", title="From DevDost | Message"
+        )
+        pywhatkit.sendwhatmsg(
+            contact,
+            message,
+            time_hour=int(datetime.now().hour),
+            time_min=(int(datetime.now().minute) + 1),
+        )
+        speak("sent!")
+    
+
+    """
+    switch tabs
     """
 
     """
