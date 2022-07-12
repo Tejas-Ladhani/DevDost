@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 import random
-from time import time
+from time import sleep, time
 from requests import get
 from zmq import NULL
 from functionalities.speak import speak
@@ -156,6 +156,10 @@ def openApplication(query):
         joke = pyjokes.get_joke()
         speak(joke)
 
+    """
+    close running applications
+    system shutdown, sleep, logout
+    """
     if "close notepad" in query:
         speak("Okay, closing notepad.")
         os.system("taskkill /im notepad.exe")
@@ -220,12 +224,67 @@ def openApplication(query):
             time_min=(int(datetime.now().minute) + 1),
         )
         speak("sent!")
-    
 
     """
     switch tabs
     """
+    if (
+        "switch tab" in query
+        or "one more tab" in query
+        or "switch window" in query
+        or "switch once more" in query
+        or "switch the tab" in query
+        or "switch the window" in query
+        or "switch the screen" in query
+        or "next tab" in query
+        or "next window" in query
+        or "next screen" in query
+    ):
+        pyautogui.keyDown("alt")
+        pyautogui.press("tab")
+        sleep(1)
+        pyautogui.keyUp("alt")
 
+    """
+    take screenshot
+    """
+    if (
+        "take screenshot" in query
+        or "capture the screen" in query
+        or "have the screenshot" in query
+        or "capture screen" in query
+        or "have screenshot" in query
+        or "save screenshot" in query
+        or "take ss" in query
+        or "capture the ss" in query
+        or "have the ss" in query
+        or "capture ss" in query
+        or "have ss" in query
+        or "save ss" in query
+    ):
+        speak("okay!!")
+        if not os.path.isdir("./generated_ss"):
+            os.mkdir("./generated_ss")
+
+        pyautogui.screenshot(
+            f"./generated_ss/devDost_ss_{(random.randint(1,1000)*random.randint(1,10))}.png"
+        )
+        speak("Screenshot saved.")
+        # pyautogui.press('prtscr')
+        # try:
+        #     os.system("start mspaint.exe")
+        #     sleep(1)
+        #     pyautogui.keyDown('ctrl')
+        #     pyautogui.keyDown('v')
+        #     sleep(1)
+        #     pyautogui.keyUp('ctrl')
+        #     pyautogui.keyUp('v')
+
+        # except Exception:
+        #     print("😟 some error occurred")
+
+        # screenshot = pyautogui.screenshot()
+        # screenshot.save(f"./new/DevDost_ss_{datetime.now()}.png")
     """
     send email, any updates ? etc
     """
@@ -240,14 +299,6 @@ def openApplication(query):
 
     """
     weather
-    """
-
-    """
-    close running applications
-    """
-
-    """
-    system shutdown, sleep, logout
     """
 
     """
