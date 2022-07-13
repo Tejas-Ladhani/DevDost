@@ -2,6 +2,8 @@ from datetime import datetime
 import os
 import random
 from time import sleep, time
+from PyPDF2 import PdfReader
+import PyPDF2
 from requests import get
 from functionalities.speak import speak
 from functionalities.listen import listen
@@ -198,6 +200,39 @@ def openApplication(query):
         os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
     # speak("Dude, any more work for me ?")
 
+    elif (
+        "read pdf" in query
+        or "read me a pdf" in query
+        or "read a pdf" in query
+        or "read the pdf" in query
+        or "read book" in query
+    ):
+        speak("Okay Boss! Please Enter the path of that PDF")
+        try:
+            path = pyautogui.prompt("Please Enter the path", "PDF Path | DevDost")
+            print(path)
+            pdfFile = open(path, "rb")
+            PdfReader = PyPDF2.PdfFileReader(pdfFile)
+            numberOfPages = int(PdfReader.numPages)
+            print(numberOfPages)
+            speak(f"Total number of pages in this book is {numberOfPages}")
+            speak("Please help me with the page number, that i have to read")
+            try:
+                pageNumberToRead = int(
+                    pyautogui.prompt("Enter the page Number", "PDF | DevDost")
+                )
+                print(pageNumberToRead)
+                if pageNumberToRead >= 0 and pageNumberToRead <= numberOfPages:
+                    speak(f"Reading page {pageNumberToRead} for you")
+                    page = PdfReader.getPage(pageNumberToRead - 1)
+                    content = page.extractText()
+                    speak(content.lower())
+            except:
+                speak("Please enter number only. please invoke the command again!")
+        except:
+            speak("Some Error ocurred! Probably you entered a invalid path or file.")
+            print("💀 Some Error ocurred.")
+
     """
     whatsapp
     """
@@ -289,7 +324,11 @@ def openApplication(query):
     """
 
     """
-    any updates from social media -> Linkedin Twitter Instagram
+    location via IP
+    """
+
+    """
+    any updates from social media -> Linkedin Twitter Instagram (scrapping or automation selenium)
     """
 
     """
