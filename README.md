@@ -1,7 +1,7 @@
 ![DevDost](/devdost.png)
 
 <p align="center">
-<img src="https://img.shields.io/github/license/Tejas-Ladhani/DevDost" />
+<img src="https://img.shields.io/github/license/tejas-ladhani/devdost" />
 <img src="https://img.shields.io/badge/Author-Tejas_Ladhani-yellow" />
 </p>
 
