@@ -4,7 +4,8 @@ import random
 from time import sleep, time
 from PyPDF2 import PdfReader
 import PyPDF2
-from requests import get
+from requests import get, request
+import requests
 from functionalities.speak import speak
 from functionalities.listen import listen
 import wikipedia
@@ -40,6 +41,27 @@ def openApplication(query):
         my_ip = get("https://api.ipify.org").text
         speak(f"your ip address is {my_ip}")
 
+    elif (
+        "my location" in query
+        or "where i am" in query
+        or "am i at my home" in query
+        or "am i at" in query
+        or "what is this place" in query
+        or "current location" in query
+    ):
+        speak("Okay, Let me check")
+        try:
+            my_ip = get("https://api.ipify.org").text
+            locationURL = f"https://ipapi.co/{my_ip}/json"
+            geo_requests = requests.get(locationURL)
+            geo_data = geo_requests.json()
+            city = geo_data["city"]
+            state = geo_data["region"]
+            country = geo_data["country_name"]
+            postal_code= geo_data['postal']
+            speak(f"Not sure, but it seems, you are around {city}, {state}, {country}, but the postal code is {postal_code}")
+        except:
+            speak("seems, there is a connectivity issue. Please try again")
     elif (
         "wikipedia" in query
         or "wiki" in query
@@ -233,9 +255,6 @@ def openApplication(query):
             speak("Some Error ocurred! Probably you entered a invalid path or file.")
             print("💀 Some Error ocurred.")
 
-    """
-    whatsapp
-    """
     if (
         "message on whatsapp" in query
         or "whatsapp message" in query
@@ -321,10 +340,6 @@ def openApplication(query):
         # screenshot.save(f"./new/DevDost_ss_{datetime.now()}.png")
     """
     send email, any updates ? etc
-    """
-
-    """
-    location via IP
     """
 
     """
