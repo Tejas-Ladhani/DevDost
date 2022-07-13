@@ -40,4 +40,4 @@ python devDost.py
 
 ## 📜 LICENSE
 
-[AGPL 3.0 License](https://github.com/Tejas-Ladhani/DevDost/blob/main/LICENSE)
+[AGPL 3.0 License](/LICENSE.txt)
