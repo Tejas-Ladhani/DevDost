@@ -58,8 +58,10 @@ def openApplication(query):
             city = geo_data["city"]
             state = geo_data["region"]
             country = geo_data["country_name"]
-            postal_code= geo_data['postal']
-            speak(f"Not sure, but it seems, you are around {city}, {state}, {country}, but the postal code is {postal_code}")
+            postal_code = geo_data["postal"]
+            speak(
+                f"Not sure, but it seems, you are around {city}, {state}, {country}, but the postal code is {postal_code}"
+            )
         except:
             speak("seems, there is a connectivity issue. Please try again")
     elif (
@@ -152,7 +154,12 @@ def openApplication(query):
     """
     browser
     """
-    if "search browser" in query:
+    if (
+        "search browser" in query
+        or "search on browser" in query
+        or "search google" in query
+        or "search on google" in query
+    ):
         speak("what should I search ?")
         toSearch = listen().lower()
         speak("Okay, here you go!")
@@ -161,9 +168,6 @@ def openApplication(query):
         speak("Okay!")
         webbrowser.open_new_tab("https://www.google.com")
 
-    if "no thanks" in query:
-        speak("Okay, have a good day!")
-        sys.exit(1)
     """
     Jokes
     """
@@ -186,7 +190,7 @@ def openApplication(query):
     if "close notepad" in query:
         speak("Okay, closing notepad.")
         os.system("taskkill /im notepad.exe")
-    elif "close chrome" in query:
+    elif "close chrome" in query or "close browser" in query:
         speak("Okay, closing chrome.")
         os.system("taskkill /im chrome.exe")
     elif "close command prompt" in query or "close cmd" in query:
@@ -338,6 +342,20 @@ def openApplication(query):
 
         # screenshot = pyautogui.screenshot()
         # screenshot.save(f"./new/DevDost_ss_{datetime.now()}.png")
+
+    speak(
+        random.choice(
+            [
+                "what else ?",
+                "what should i do next ?",
+                "where should we go next ?",
+                "anything else ?",
+            ]
+        )
+    )
+    """
+    Hide files in a particular folder.
+    """
     """
     send email, any updates ? etc
     """

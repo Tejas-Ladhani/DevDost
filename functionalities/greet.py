@@ -10,4 +10,4 @@ def greet():
         phrase = "Good afternoon"
     else:
         phrase = "Good evening"
-    return f"Hey dude !! {phrase}. Please tell me how can i help you?"
+    return f"Hi,{phrase}. I am Dev Dost. It's {datetime.datetime.today().strftime('%I:%M %p')}. Please tell me how can i help you?"
