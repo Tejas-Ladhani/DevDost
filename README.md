@@ -3,7 +3,6 @@
 <p align="center">
 <img src="https://img.shields.io/github/license/Tejas-Ladhani/DevDost" />
 <img src="https://img.shields.io/badge/Author-Tejas-Ladhani-yellow" />
-<img src="https://img.shields.io/badge/code%20style-airbnb-blue" />
 </p>
 
 ## 💥 Introduction
